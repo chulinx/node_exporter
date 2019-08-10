@@ -162,7 +162,8 @@ To see all available configuration flags:
 ## Running tests
 
     make test
-
+## Support Coutom Scripts
+	default dir /opt/node_expoter
 
 ## Using Docker
 The `node_exporter` is designed to monitor the host system. It's not recommended
