@@ -162,8 +162,10 @@ To see all available configuration flags:
 ## Running tests
 
     make test
-## Support Coutom Scripts
+## Support Custom Scripts to Mecrics
 	default dir /opt/node_expoter
+	script format out <describe=num > 
+	example == > ssh port status=1
 
 ## Using Docker
 The `node_exporter` is designed to monitor the host system. It's not recommended
