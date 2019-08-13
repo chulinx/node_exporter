@@ -16,13 +16,14 @@ import (
 const coustomScript = "coustom_script"
 
 type CoustomScriptCollector struct {
+	Spath string
 }
 
 var (
 	scriptPath = kingpin.Flag(
 		"spath",
 		"coustom script path",
-	).Default("/opt/node_export/").String()
+	).Default("/opt/node_exporter/").String()
 )
 
 func init() {
@@ -30,13 +31,15 @@ func init() {
 }
 
 func NewCoustomScriptCollector() (Collector, error) {
-	return &CoustomScriptCollector{}, nil
+	return &CoustomScriptCollector{
+		Spath: *scriptPath,
+	}, nil
 }
 
 func (c *CoustomScriptCollector) Update(ch chan<- prometheus.Metric) error {
 	var metricType prometheus.ValueType
-	files, err := filepath.Glob(*scriptPath+"/*")
-	log.Debugf("scripts path %s", *scriptPath)
+	files, err := filepath.Glob(c.Spath+"/*")
+	log.Debugf("scripts path %s", c.Spath)
 	if err != nil {
 		log.Fatalf("get scripts file list faile %s", err.Error())
 	}
@@ -48,10 +51,11 @@ func (c *CoustomScriptCollector) Update(ch chan<- prometheus.Metric) error {
 		if err = os.Chmod(file, 0755); err != nil {
 			log.Fatalf("chmod +x %s faile err:%s", file,err.Error())
 		}
-		result, err := c.RunCommand(file)
+		result, err1 := c.RunCommand(file)
 		log.Debugf("result %s command %s",result,file)
-		if err != nil {
-			log.Infof("command run fail %s",err.Error())
+		if err1 != nil || result == ""{
+			log.Errorf("command run fail,result: %s,file: %s",result,file)
+			continue
 		}
 		key, value := strings.Replace(strings.Split(result, "=")[0]," ","_",-1), strings.Split(result, "=")[1]
 		log.Debugf("key %s value %s",key,value)

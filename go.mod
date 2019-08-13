@@ -1,6 +1,7 @@
 module github.com/prometheus/node_exporter
 
 require (
+	git.sr.ht/~eliasnaur/gio v0.0.0-20190811180339-3c69c81401e7 // indirect
 	github.com/beevik/ntp v0.2.0
 	github.com/coreos/go-systemd v0.0.0-20190321100706-95778dfbb74e
 	github.com/ema/qdisc v0.0.0-20180104102928-b307c22d3ce7
