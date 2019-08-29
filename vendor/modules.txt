@@ -1,3 +1,5 @@
+# github.com/StackExchange/wmi v0.0.0-20190523213315-cbe66965904d
+github.com/StackExchange/wmi
 # github.com/alecthomas/template v0.0.0-20160405071501-a0175ee3bccc
 github.com/alecthomas/template
 github.com/alecthomas/template/parse
@@ -11,6 +13,9 @@ github.com/beorn7/perks/quantile
 github.com/coreos/go-systemd/dbus
 # github.com/ema/qdisc v0.0.0-20180104102928-b307c22d3ce7
 github.com/ema/qdisc
+# github.com/go-ole/go-ole v1.2.4
+github.com/go-ole/go-ole
+github.com/go-ole/go-ole/oleutil
 # github.com/godbus/dbus v0.0.0-20190402143921-271e53dc4968
 github.com/godbus/dbus
 # github.com/golang/protobuf v1.3.1
@@ -53,12 +58,21 @@ github.com/prometheus/procfs/sysfs
 github.com/prometheus/procfs/xfs
 github.com/prometheus/procfs/internal/fs
 github.com/prometheus/procfs/internal/util
+# github.com/shirou/gopsutil v2.18.12+incompatible
+github.com/shirou/gopsutil/net
+github.com/shirou/gopsutil/process
+github.com/shirou/gopsutil/internal/common
+github.com/shirou/gopsutil/cpu
+github.com/shirou/gopsutil/host
+github.com/shirou/gopsutil/mem
 # github.com/siebenmann/go-kstat v0.0.0-20160321171754-d34789b79745
 github.com/siebenmann/go-kstat
 # github.com/sirupsen/logrus v1.4.2
 github.com/sirupsen/logrus
 # github.com/soundcloud/go-runit v0.0.0-20150630195641-06ad41a06c4a
 github.com/soundcloud/go-runit/runit
+# github.com/tianyazc/zlxGo v0.0.0-20190816005915-b3ae594abe8d
+github.com/tianyazc/zlxGo/zlxmodule/stringfile
 # go.uber.org/atomic v1.3.2
 go.uber.org/atomic
 # go.uber.org/multierr v1.1.0

@@ -47,8 +47,8 @@ func newHandler(includeExporterMetrics bool, maxRequests int) *handler {
 	}
 	if h.includeExporterMetrics {
 		h.exporterMetricsRegistry.MustRegister(
-			prometheus.NewProcessCollector(prometheus.ProcessCollectorOpts{}),
-			prometheus.NewGoCollector(),
+				prometheus.NewProcessCollector(prometheus.ProcessCollectorOpts{}),
+				prometheus.NewGoCollector(),
 		)
 	}
 	if innerHandler, err := h.innerHandler(); err != nil {
