@@ -1,7 +1,6 @@
 package collector
 
 import (
-	"fmt"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/common/log"
 	"github.com/shirou/gopsutil/process"
@@ -9,6 +8,12 @@ import (
 )
 
 const ProcessPorts = "process_port"
+
+var ProcessPortDesc = prometheus.NewDesc(
+	prometheus.BuildFQName(namespace, ProcessPorts, "check"),
+	"Process_Port Check Information",
+	[]string{"app","port"}, nil,
+)
 
 type ProcessPort struct {
 }
@@ -52,23 +57,15 @@ func (pp *ProcessPort) Update(ch chan<- prometheus.Metric) error {
 				value = 1
 				log.Debug(pp.Formatlables(cmds), value)
 				ch <- prometheus.MustNewConstMetric(
-					prometheus.NewDesc(
-						prometheus.BuildFQName(namespace, ProcessPorts, k),
-						fmt.Sprintf("process_port information port %s.", k),
-						[]string{"app"}, nil,
-					),
-					metricType, value, pp.Formatlables(cmds)...,
+					ProcessPortDesc,
+					metricType, value, pp.Formatlables(cmds),k,
 				)
 			} else {
 				value = 0
 				log.Debug(pp.Formatlables(cmds), value)
 				ch <- prometheus.MustNewConstMetric(
-					prometheus.NewDesc(
-						prometheus.BuildFQName(namespace, ProcessPorts, k),
-						fmt.Sprintf("process_port information port %s.", k),
-						[]string{"app"}, nil,
-					),
-					metricType, value, pp.Formatlables(cmds)...,
+					ProcessPortDesc,
+					metricType, value, pp.Formatlables(append(cmds)),k,
 				)
 			}
 		}

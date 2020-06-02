@@ -79,11 +79,12 @@ func (pp *ProcessPort) ReadAllListenToStr() (map[string]map[string][]string, err
 	return allListen, err
 }
 
-func (pp *ProcessPort)Formatlables(a []string) (ret []string) {
+func (pp *ProcessPort)Formatlables(a []string) (ai string) {
+	log.Debug(a)
 	for k := range a {
-		ai := strings.Replace(strings.Replace(strings.Replace(strings.Replace(a[k]," ","_",-1),".","_",-1),"-","_",-1),".","_",-1)
-		ret = append(ret,ai)
+		log.Debug(k)
+		ai = strings.Replace(strings.Replace(strings.Replace(strings.Replace(a[k]," ","_",-1),".","_",-1),"-","_",-1),".","_",-1)
 	}
 
-	return
+	return ai
 }
